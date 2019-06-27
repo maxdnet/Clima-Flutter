@@ -11,10 +11,10 @@ class NetworkingBrain {
     var url =
         "https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&APPID=$kAppID";
 
-    var client = new http.Client();
+    var client = http.Client();
 
     try {
-      var response = await client.get(url).timeout(Duration(seconds: 3));
+      var response = await client.get(url).timeout(Duration(seconds: 5));
       if (response.statusCode == 200) {
         var jsonResponse = convert.jsonDecode(response.body);
         weatherModel = WeatherModel.fromJson(jsonResponse);
