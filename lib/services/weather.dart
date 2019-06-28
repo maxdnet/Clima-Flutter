@@ -2,23 +2,21 @@ class WeatherModel {
   String city;
   String temperature;
   String humidity;
-  String pressure;
+  String condition;
 
-  WeatherModel({this.temperature, this.humidity, this.pressure, this.city});
+  WeatherModel({this.temperature, this.humidity, this.condition, this.city});
 
   WeatherModel.fromJson(Map<String, dynamic> json)
       : city = json['name'].toString(),
-        temperature = (double.parse(json['main']['temp'].toString()) -
-                double.parse('273.15'))
-            .toStringAsFixed(1),
+        temperature = json['main']['temp'].toStringAsFixed(1),
         humidity = json['main']['humidity'].toString(),
-        pressure = json['main']['pressure'].toString();
+        condition = json['weather'][0]['id'].toString();
 
   Map<String, dynamic> toJson() => {
         'city': city,
         'temperature': temperature,
         'humidity': humidity,
-        'pressure': pressure,
+        'condition': condition,
       };
 
   String getWeatherIcon(int condition) {

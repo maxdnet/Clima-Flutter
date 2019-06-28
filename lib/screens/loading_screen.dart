@@ -17,18 +17,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getLocation();
+    getLocationData();
   }
 
   String infoText = 'Recupero informazioni Meteo';
 
-  void getLocation() async {
+  void getLocationData() async {
     await locationBrain.getLocation();
-    getWeatherInfo(locationBrain.latitude, locationBrain.longitude);
-  }
-
-  void getWeatherInfo(double latitude, double longitude) async {
-    await networkingBrain.getWeatherInfo(latitude, longitude);
+    await networkingBrain.getWeatherInfo(
+        locationBrain.latitude, locationBrain.longitude);
 
     if (!networkingBrain.networkKO)
       Navigator.push(

@@ -7,12 +7,18 @@ class LocationScreen extends StatefulWidget {
   LocationScreen({this.weather});
 
   @override
-  _LocationScreenState createState() => _LocationScreenState(weather: weather);
+  _LocationScreenState createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  final WeatherModel weather;
-  _LocationScreenState({this.weather});
+  WeatherModel weather;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    weather = widget.weather;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +66,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       style: kTempTextStyle,
                     ),
                     Text(
-                      weather.getWeatherIcon(int.parse(weather.pressure)),
+                      weather.getWeatherIcon(int.parse(weather.condition)),
                       style: kConditionTextStyle,
                     ),
                   ],

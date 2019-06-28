@@ -9,7 +9,7 @@ class NetworkingBrain {
 
   Future<void> getWeatherInfo(double latitude, double longitude) async {
     var url =
-        "https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&APPID=$kAppID";
+        "https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&APPID=$kAppID&units=metric";
 
     var client = http.Client();
 
